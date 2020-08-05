@@ -1,0 +1,18 @@
+version: '3'
+services:
+  dbpostgresql:
+    image: postgres
+    container_name: db-codechallenge-backend-bank
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=codechallenge-backend-bank
+  app:
+    container_name: app-codechallenge-backend-bank
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - dbpostgresql
